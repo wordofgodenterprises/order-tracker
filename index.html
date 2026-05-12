@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WORD OF GOD ENTERPRISES</title>
 
 <style>
@@ -149,20 +153,23 @@ button:hover{
 }
 
 @keyframes pulse{
-    0%{
-        transform:scale(1);
-    }
 
-    50%{
-        transform:scale(1.1);
-    }
+0%{
+    transform:scale(1);
+}
 
-    100%{
-        transform:scale(1);
-    }
+50%{
+    transform:scale(1.1);
+}
+
+100%{
+    transform:scale(1);
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -175,9 +182,13 @@ button:hover{
 
 <p class="city">Hyderabad</p>
 
-<input type="text" id="trackingInput" placeholder="Enter Tracking ID">
+<input type="text"
+id="trackingInput"
+placeholder="Enter Tracking ID">
 
-<button onclick="trackOrder()">Track Order</button>
+<button onclick="trackOrder()">
+Track Order
+</button>
 
 <div id="error" class="error"></div>
 
@@ -233,8 +244,6 @@ steps: 4
 
 },
 
-    ,
-
 "WOG20262": {
 
 order: "Spares / Parts of the Premium Lighting Podium",
@@ -271,11 +280,14 @@ const order = orders[tracking];
 
 if(order){
 
-document.getElementById("error").innerHTML = "";
+document.getElementById("error")
+.innerHTML = "";
 
-document.getElementById("result").style.display = "block";
+document.getElementById("result")
+.style.display = "block";
 
-document.getElementById("result").innerHTML = `
+document.getElementById("result")
+.innerHTML = `
 
 <p>
 <strong>Order:</strong><br>
@@ -309,7 +321,9 @@ ${order.tracking}
 
 <p>
 <strong>Status:</strong><br>
-<span class="status">${order.status}</span>
+<span class="status">
+${order.status}
+</span>
 </p>
 
 <div class="progress-container">
@@ -355,10 +369,11 @@ style="width:${order.progress}%;">
 
 else{
 
-document.getElementById("result").style.display = "none";
+document.getElementById("result")
+.style.display = "none";
 
-document.getElementById("error").innerHTML =
-"Tracking ID not found";
+document.getElementById("error")
+.innerHTML = "Tracking ID not found";
 
 }
 
@@ -367,4 +382,5 @@ document.getElementById("error").innerHTML =
 </script>
 
 </body>
+
 </html>
