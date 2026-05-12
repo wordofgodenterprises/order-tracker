@@ -15,7 +15,7 @@ body{
 }
 
 .container{
-    max-width:500px;
+    max-width:600px;
     margin:40px auto;
     background:white;
     padding:30px;
@@ -119,7 +119,6 @@ button:hover{
     top:17px;
     left:0;
     height:4px;
-    width:50%;
     background:green;
     z-index:2;
     transition:1s;
@@ -182,72 +181,142 @@ button:hover{
 
 <div id="error" class="error"></div>
 
-<div id="result" class="result">
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+const orders = {
+
+"WOG2026": {
+
+order: "Premium Lighting Podium - QTY 2",
+
+customer: "Aimol Khullen Baptist Church SBA",
+
+phone: "+91 98632 30685",
+
+address: "P O Pallel, Pallel Bazaar, Kakching, Manipur 795103. C/o Ch Sote Aimol Pastor",
+
+courier: "India Post EMS",
+
+tracking: "WOG2026",
+
+status: "Shipped 05/05/2026",
+
+progress: 50,
+
+steps: 3
+
+},
+
+"WOG20261": {
+
+order: "Lighting Podium Medium",
+
+customer: "Apostolic Christian Assembly",
+
+phone: "8618220437",
+
+address: "Attibelle, Bangalore, Karnataka",
+
+courier: "TVK TRAVELS - AR01W3336 | Bus Driver Contact : 6379413336",
+
+tracking: "WOG20261",
+
+status: "Out For Delivery",
+
+progress: 75,
+
+steps: 4
+
+}
+
+};
+
+function trackOrder(){
+
+const tracking =
+document.getElementById("trackingInput")
+.value
+.trim()
+.toUpperCase();
+
+const order = orders[tracking];
+
+if(order){
+
+document.getElementById("error").innerHTML = "";
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").innerHTML = `
 
 <p>
 <strong>Order:</strong><br>
-Premium Lighting Podium - QTY 2
+${order.order}
 </p>
 
 <p>
 <strong>Customer Name:</strong><br>
-Aimol Khullen Baptist Church SBA
+${order.customer}
 </p>
 
 <p>
 <strong>Phone:</strong><br>
-+91 98632 30685
+${order.phone}
 </p>
 
 <p>
 <strong>Address:</strong><br>
-P O Pallel, Pallel Bazaar,<br>
-Kakching, Manipur 795103.<br>
-C/o Ch Sote Aimol Pastor
+${order.address}
 </p>
 
 <p>
 <strong>Courier:</strong><br>
-India Post EMS
+${order.courier}
 </p>
 
 <p>
 <strong>Tracking ID:</strong><br>
-WOG2026
+${order.tracking}
 </p>
 
 <p>
 <strong>Status:</strong><br>
-<span class="status">Shipped 05/05/2026</span>
+<span class="status">${order.status}</span>
 </p>
 
 <div class="progress-container">
 
 <div class="progress-bar">
 
-<div class="progress-fill"></div>
+<div class="progress-fill"
+style="width:${order.progress}%;">
+</div>
 
-<div class="step active">
+<div class="step ${order.steps >= 1 ? 'active' : ''}">
 <div class="circle">1</div>
 <p>Order Created</p>
 </div>
 
-<div class="step active">
+<div class="step ${order.steps >= 2 ? 'active' : ''}">
 <div class="circle">2</div>
 <p>Shipped</p>
 </div>
 
-<div class="step active">
+<div class="step ${order.steps >= 3 ? 'active' : ''}">
 <div class="circle">3</div>
 <p>Assigned Courier</p>
 </div>
 
-<div class="step">
+<div class="step ${order.steps >= 4 ? 'active' : ''}">
 <div class="circle">4</div>
 <p>Out for Delivery</p>
 </div>
 
-<div class="step">
+<div class="step ${order.steps >= 5 ? 'active' : ''}">
 <div class="circle">5</div>
 <p>Delivered</p>
 </div>
@@ -256,39 +325,18 @@ WOG2026
 
 </div>
 
-</div>
+`;
 
-</div>
+}
 
-<script>
+else{
 
-function trackOrder(){
+document.getElementById("result").style.display = "none";
 
-    const tracking =
-    document.getElementById("trackingInput")
-    .value
-    .trim()
-    .toUpperCase();
+document.getElementById("error").innerHTML =
+"Tracking ID not found";
 
-    if(tracking === "WOG2026"){
-
-        document.getElementById("result")
-        .style.display = "block";
-
-        document.getElementById("error")
-        .innerHTML = "";
-
-    }
-
-    else{
-
-        document.getElementById("result")
-        .style.display = "none";
-
-        document.getElementById("error")
-        .innerHTML = "Tracking ID not found";
-
-    }
+}
 
 }
 
